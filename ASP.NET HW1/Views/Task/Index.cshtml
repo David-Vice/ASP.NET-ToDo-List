@@ -1,0 +1,27 @@
+﻿@model TaskViewModel
+@{
+    ViewData["Title"] = "ToDo List";
+}
+
+<div class="content">
+    <h1 class="todoHead">Todo List</h1>
+
+    <form asp-action="Index" asp-controller="Task">
+        <input asp-for="@Model.Task.Info" class="addtask" placeholder="Add New Task ..."/>
+
+        <button type="submit">Add</button>
+    </form>
+
+    <div id="taskdiv" class="tasks">
+        @for(int i=0;i<@Model.Tasks.Count;i++)
+        {
+           <div>
+                <div class="taskdiv">
+                    <p class="tasktext">@Model.Tasks[i].Info</p>
+                </div>
+                <a class="form-deleter-button" href="@Url.Action("Delete","Task", new { id = i})">Delete</a>
+                <hr />
+            </div> 
+        }
+    </div>
+</div>
